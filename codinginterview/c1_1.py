@@ -2,8 +2,7 @@
 def dup(arg):
     ar = []
     for c in arg:
-        if c in ar:
-            return True
+        if c in ar: return True
         ar.append(c)
     return False
 

@@ -1,30 +1,5 @@
-import sys, random
-
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-    def append_to_tail(self, d):
-        end = Node(d)
-        n = self
-        while n.next != None:
-            n = n.next
-        n.next = end
-
-def make_unidirectional_list(l):
-    root = Node(random.randint(0, 10))
-    for i in range(l):
-        root.append_to_tail(random.randint(0, 10))
-    return root
-
-def debug_list(r):
-    n = r
-    ar = []
-    while n.next != None:
-        ar.append(n.data)
-        n = n.next
-    ar.append(n.data)
-    print ar
+import sys
+from unidirectional_list import make_unidirectional_list, debug_list
 
 def del_dup(r):
     prev = cur = r

@@ -49,8 +49,4 @@ int main() {
     for (int i = 0; i < MAX; i ++)
         cout << array[i] << " ";
     cout << endl;
-    
-    
-
-    
 }

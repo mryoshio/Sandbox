@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void sentinel_search(int s, vector<int> v) {
+void linear_search(int s, vector<int> v) {
     cout << "search " << s << " ... ";
     int i;
     for (i = 0; i < v.size(); i++) {
@@ -27,7 +27,7 @@ int main() {
     }
     cout << endl;
 
-    sentinel_search(rand() % CEILING + 1, v);
+    linear_search(rand() % CEILING + 1, v);
 
     vector<int>::iterator it = v.begin();
     while (it != v.end()) {

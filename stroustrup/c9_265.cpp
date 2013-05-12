@@ -2,6 +2,7 @@
 
 class Date {
 public:
+
     Date(int y, int mm, int dd)
         :y(yy), m(mm), d(dd)
     {

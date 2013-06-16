@@ -66,7 +66,7 @@ string get_data_from_map(HASHTABLE *hashtable, string key) {
                 return word->japanese;
         }
     }
-    return NULL;
+    return "";
 }
 
 WORDSET *delete_data_from_map(HASHTABLE *hashtable, string key) {
@@ -103,7 +103,7 @@ void print_all_data(HASHTABLE *hashtable) {
 
     for (n = 0; n < hashtable->size; n++) {
         if (hashtable->data[n] != NULL)
-            cout << n << ": " << hashtable->data[n]->english << "\t" << hashtable->data[n]->japanese;
+            cout << '[' << n << "]\t" << hashtable->data[n]->english << "\t" << hashtable->data[n]->japanese << endl;
     }
 }
 
@@ -113,7 +113,7 @@ int main(void) {
     HASHTABLE hashtable;
     WORDSET *wordfound;
     WORDSET words[5] = {
-        { "dolphin", "イルカ" }, { "dbeluga", "シロイルカ" },
+        { "dolphin", "イルカ" }, { "beluga", "シロイルカ" },
         { "grampus", "シャチ" }, { "medusa", "くらげ" },
         { "otter", "カワウソ" }
     };
@@ -125,20 +125,22 @@ int main(void) {
     }
 
     do {
-        cout << " 1: search, 2: delete, 3: print, 0: exit" << endl;
+        cout << "input >>>  [1] search, [2] delete, [3] print, [0] exit" << endl;
         cin >> n;
-        cout << "input english word: ";
-        cin >> key;
         switch (n) {
         case 1:
+            cout << "input english word: ";
+            cin >> key;
             japanese = get_data_from_map(&hashtable, key);
-            if (japanese == NULL) {
+            if (japanese.empty()) {
                 cout << key << " is not found in map";
             } else {
                 cout << key << " is " << japanese << endl;
             }
             break;
         case 2:
+            cout << "input english word: ";
+            cin >> key;
             wordfound = delete_data_from_map(&hashtable, key);
             if (wordfound == NULL) {
                 cout << key << " is not found in map";

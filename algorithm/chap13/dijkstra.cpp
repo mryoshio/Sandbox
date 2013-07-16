@@ -5,10 +5,10 @@
 
 using namespace std;
 
-char* stations[] = { "Yokohama", "Musashikosugi", "Shinagawa", "Shibuya", "Shimbashi", "Tameikesannnou" };
+string stations[] = { "Yokohama", "Musashikosugi", "Shinagawa", "Shibuya", "Shimbashi", "Tameikesannno" };
 
-int current_cost[STATION_NUMBER];
-int fix[STATION_NUMBER];
+int current_cost[STATION_NUMBER] = { -1, -1, -1, -1, -1, -1 };
+int fix[STATION_NUMBER] = { 0 };
 
 int matrix[STATION_NUMBER][STATION_NUMBER] = {
   {0, 12, 28, 0, 0, 0},
@@ -22,14 +22,11 @@ int matrix[STATION_NUMBER][STATION_NUMBER] = {
 int main(void) {
   int i, min_station, min_time, new_time;
 
-  for (i = 0; i < STATION_NUMBER; i++) {
-    current_cost[i] = -1;
-    fix[i] = 0;
-  }
   current_cost[0] = 0;
 
   while (true) {
     min_time = -1;
+    
     for (i = 0; i < STATION_NUMBER; i++) {
       if (fix[i] == 0 && current_cost[i] != -1) {
         if (min_time == -1 || min_time > current_cost[i]) {
@@ -38,21 +35,27 @@ int main(void) {
         }
       }
     }
+
     if (min_time == -1)
       break;
+
     for (i = 0; i < STATION_NUMBER; i++) {
       if (fix[i] == 0 && matrix[min_station][i] > 0) {
         new_time = min_time + matrix[min_station][i];
+    
         if (current_cost[i] == -1 || current_cost[i] > new_time) {
           current_cost[i] = new_time;
         }
       }
     }
+
     fix[min_station] = 1;
   }
+
   for (i = 0; i < STATION_NUMBER; i++) {
     cout << stations[START_STATION] << " -> " << stations[i];
     cout << ": " << current_cost[i] << endl;
   }
+
   return 0;
 }

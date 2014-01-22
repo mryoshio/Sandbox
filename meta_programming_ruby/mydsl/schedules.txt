@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+
+schedule 'メタRuby勉強会' do
+  on '2013/08/11'
+  starts '13:00'
+  ends '14:00'
+  users [9, 10]
+end
+
